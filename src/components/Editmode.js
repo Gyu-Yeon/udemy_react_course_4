@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function BookEdit(props) {
+const EditMode = (props) => {
   const { book, editBook, setInputHider } = props;
 
   const [input, setInput] = useState(book.title);
@@ -20,6 +20,6 @@ function BookEdit(props) {
       <button onClick={saveEdit}>save</button>
     </div>
   );
-}
+};
 
-export default BookEdit;
+export default EditMode;
