@@ -2,8 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
+import { useContext } from "react";
+import BooksContext from "../context/books";
 
 function App() {
+  const num = useContext(BooksContext);
   const [books, setBooks] = useState([]);
   const [dataNum, setDataNum] = useState(0);
 
