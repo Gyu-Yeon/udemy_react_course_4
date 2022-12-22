@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
-import { useContext } from "react";
-import BooksContext from "../context/books";
+// import { useContext } from "react";
+// import BooksContext from "../context/books";
 
 function App() {
-  const num = useContext(BooksContext);
+  // const num = useContext(BooksContext);
   const [books, setBooks] = useState([]);
   const [dataNum, setDataNum] = useState(0);
 
@@ -41,13 +41,14 @@ function App() {
     setBooks(editted);
   };
 
-  useEffect(() => {
-    const getBooks = async () => {
-      const response = await axios.get("http://localhost:3001/books");
-      setBooks(response.data);
-    };
-    getBooks();
+  const getBooks = useCallback(async () => {
+    const response = await axios.get("http://localhost:3001/books");
+    setBooks(response.data);
   }, []);
+
+  useEffect(() => {
+    getBooks();
+  }, [getBooks]);
 
   return (
     <div className="app">
